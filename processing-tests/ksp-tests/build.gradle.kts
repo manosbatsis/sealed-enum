@@ -1,5 +1,5 @@
 plugins {
-    kotlin("kapt")
+    id("com.google.devtools.ksp")
     idea
 }
 
@@ -8,10 +8,10 @@ repositories {
 }
 
 /**
- * Swap to `true` to allow debugging `ksp-tests`
+ * Swap to `true` to allow debugging `processor-tests`
  */
-val debugKsp = false
-if (!debugKsp) {
+val debugProcessor = false
+if (!debugProcessor) {
     sourceSets {
         test {
             java {
@@ -25,8 +25,11 @@ if (!debugKsp) {
 dependencies {
     testImplementation(libs.junit.jupiter)
     testImplementation(libs.kotlinCompileTesting.base)
+    testImplementation(libs.kotlinCompileTesting.ksp)
     testImplementation(kotlin("reflect"))
     testImplementation(projects.runtime)
-    testImplementation(projects.processor)
-    kaptTest(projects.processor)
+    testImplementation(libs.ksp.runtime)
+    testImplementation(libs.ksp.api)
+    testImplementation(projects.ksp)
+    kspTest(projects.ksp)
 }
