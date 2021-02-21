@@ -12,4 +12,5 @@ internal fun compile(vararg sourceFiles: SourceFile): KotlinCompilation.Result =
         sources = sourceFiles.toList()
         annotationProcessors = listOf(SealedEnumProcessor())
         inheritClassPath = true
+        kotlincArguments = listOf("-language-version", "1.5")
     }.compile()

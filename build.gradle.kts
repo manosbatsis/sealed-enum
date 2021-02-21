@@ -48,7 +48,8 @@ subprojects {
         compileTestKotlin {
             kotlinOptions {
                 jvmTarget = JavaVersion.VERSION_1_8.toString()
-                allWarningsAsErrors = true
+                //allWarningsAsErrors = true
+                languageVersion = "1.5"
             }
         }
 
